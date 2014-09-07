@@ -1,3 +1,5 @@
+// LAB#1 BY Michael Matimu and Alexander Slotkin
+
 import java.util.Scanner;
 
 public class User_input {
@@ -10,9 +12,17 @@ public class User_input {
 		System.out.print("Enter Years To Work: ");
 		int YearsToWork = input.nextInt();
 		
-		//Prompt the user to enter Annual Return
-		System.out.print("Enter Annual Return: ");
+		/* Prompt the user to enter Annual Return
+		 * to calculate Future Value
+		 */
+		System.out.print("Enter Annual Return to calculate future value: ");
 		double AnnualReturn = input.nextDouble();
+		
+		/* Prompt the user to enter Annual Return 
+		 * to calculate Present Value
+		 */
+		System.out.print("Enter Annual Return to calculate present value: ");
+		double Annualreturn = input.nextDouble();
 		
 		//Prompt the user to enter Years Retired
 		System.out.print("Enter Years Retired: ");
@@ -27,11 +37,16 @@ public class User_input {
 		double MonthlySSI = input.nextDouble();
 		
 		// Calculate What You Need Saved
-		double WhatYouNeedSaved = (double)(RequiredIncome - MonthlySSI) * (double)Math.pow((1 + (double)((double)AnnualReturn / 12.0 )),(int)(12 * YearsRetired));
+		double WhatYouNeedSaved = (double)(RequiredIncome - MonthlySSI) * ((1-(1/(double)Math.pow((1 + (double)((double)AnnualReturn / 12.0)),(int)(12 * YearsRetired)))) / ((double)(AnnualReturn / 12.0))); 
 		
-		//double monthlydeposit=1454485.55/(Math.pow((1+0.07/12), (40*12)));
+		//Calculate how much money you need to Save Each Month
+		double SaveEachMonth = (double)(WhatYouNeedSaved) / ((((double)Math.pow((1 + (Annualreturn / 12.0)), (int)(YearsToWork * 12))) - 1) / ((double)(Annualreturn / 12.0)));
+		
+		System.out.print("What you need saved: ");
 		System.out.println(WhatYouNeedSaved);
-		//System.out.println(monthlydeposit);
+		System.out.print("What you need to save each month: ");
+		System.out.println(SaveEachMonth);
+		
 	}
 
 }
